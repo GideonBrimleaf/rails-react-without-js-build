@@ -1,5 +1,5 @@
 import { Component } from "react"
-import h from "./htm_create_element"
+import html from "./htm_create_element"
 
 export default class Clock extends Component {
   constructor(props) {
@@ -25,9 +25,8 @@ export default class Clock extends Component {
   }
 
   render() {
-    return h`
+    return html`
       <div>
-        <h1>I'm Mary Poppins Y'All!</h1>
         <h2>It is ${this.state.date.toLocaleTimeString()}.</h2>
       </div>
     `;

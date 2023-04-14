@@ -1,5 +1,5 @@
 import { Component } from "react"
-import h from "./htm_create_element"
+import html from "./htm_create_element"
 
 export default class FlavaForm extends Component {
 	constructor(props) {
@@ -20,7 +20,7 @@ export default class FlavaForm extends Component {
 	}
 
 	render() {
-		return h`
+		return html`
             <form onSubmit=${(e) => this.handleSubmit(e)}>
                 <label>
                     Pick your favorite flavor:
