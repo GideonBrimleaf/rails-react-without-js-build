@@ -1,68 +1,40 @@
-import { Component } from "react"
-import h from "components/htm_create_element"
+import { useState } from "react"
+import h from "./htm_create_element"
+import FlavaForm from "./flava_form";
 
-function UserGreeting(props) {
-    return h`<h1>Welcome back!</h1>`;
-}
+export default function LoginControl() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-function GuestGreeting(props) {
-    return h`<h1>Please sign up.</h1>`;
-}
+  const userGreeting = () => h`<h1>Welcome back!</h1>`
+  const guestGreeting = () => h`<h1>Please sign up.</h1>`
 
-function Greeting(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
-        return h`<${UserGreeting} />`;
+  const greeting = () => isLoggedIn ? userGreeting() : guestGreeting()
+
+  const handleLogin = () => setIsLoggedIn(true)
+  const handleLogout = () => setIsLoggedIn(false)
+
+  const loginButton = () => {
+    return h`<button onClick=${() => handleLogin()}>Login</button>`
+  }
+
+  const logoutButton = () => {
+    return h`<button onClick=${() => handleLogout()}>Logout</button>`
+  }
+
+  const buttonSelection = () => isLoggedIn ? logoutButton() : loginButton()
+  const contentSelection = () => {
+    if(isLoggedIn) {
+      return h `
+        <${FlavaForm} />
+      `
     }
-    return h`<${GuestGreeting} />`;
-}
+  }
 
-function LoginButton(props) {
-    return h`
-        <button onClick=${() => props.onClick()}>
-            Login
-        </button>
-    `;
-}
-
-function LogoutButton(props) {
-    return h`
-        <button onClick=${() => props.onClick()}>
-            Logout
-        </button>
-    `;
-}
-
-export default class LoginControl extends Component {
-    constructor(props) {
-        super(props);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        this.state = {isLoggedIn: false};
-    }
-
-    handleLoginClick() {
-        this.setState({isLoggedIn: true});
-    }
-
-    handleLogoutClick() {
-        this.setState({isLoggedIn: false});
-    }
-
-    render() {
-        const isLoggedIn = this.state.isLoggedIn;
-        let button;
-        if (isLoggedIn) {
-            button = h`<${LogoutButton} onClick=${() => this.handleLogoutClick()} />`;
-        } else {
-            button = h`<${LoginButton} onClick=${() => this.handleLoginClick()} />`;
-        }
-
-        return h`
-            <div>
-                <${Greeting} isLoggedIn=${isLoggedIn} />
-                ${button}
-            </div>
-        `;
-    }
+  return h`
+    <div>
+      ${greeting()}
+      ${buttonSelection()}
+      ${contentSelection()}
+    </div>
+  `
 }
