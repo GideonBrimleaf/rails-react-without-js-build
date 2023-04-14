@@ -9,5 +9,5 @@ render(
 			<${Clock} />
 			<${LoginControl} />
 		`,
-    document.getElementById("root")
+    document.getElementById("app")
 )
