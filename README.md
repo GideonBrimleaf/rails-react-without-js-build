@@ -3,22 +3,6 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+App to test the ability to render react templates with import maps and without a transpiler.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Based on [DHH's video on the topic](https://www.youtube.com/watch?v=k73LKxim6tw)
